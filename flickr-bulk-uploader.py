@@ -31,6 +31,7 @@ for root, dirs, files in os.walk(PHOTOS_DIRECTORY):
             for ps in photosets_list.find('photosets').findall('photoset'):
                 if ps.find('title').text == photoset_title:
                     photoset_id = ps.get('id')
+                    photoset_created = True
                     photoset_photos = flickr.photosets_getPhotos(
                         photoset_id=photoset_id)
                     for photo in photoset_photos.find('photoset')\
