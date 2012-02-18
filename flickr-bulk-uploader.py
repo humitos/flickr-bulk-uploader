@@ -2,10 +2,7 @@ import os
 import simplejson
 import flickrapi
 
-api_secret = 'a131ba6ac653b986'
-api_key = 'dced4d69f72c55375dd72f12d2a3941b'
-
-PHOTOS_DIRECTORY = '/home/humitos/fotos'
+from settings import PHOTOS_DIRECTORY, api_key, api_secret
 
 
 class Flickr(object):
