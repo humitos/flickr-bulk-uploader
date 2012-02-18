@@ -64,3 +64,10 @@ stops; you can "resume" the last state running it again without
 uploading the same photos again. "flickr-bulk-upload.py" will check if
 the Photo was already uploaded in the PhotoSet before to upload it.
 
+
+Running the application
+-----------------------
+
+Just run it as a Python script::
+
+    $ python flickr-bulk-uploader.py
