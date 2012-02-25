@@ -2,7 +2,7 @@ import os
 import simplejson
 import flickrapi
 
-from settings import PHOTOS_DIRECTORY, api_key, api_secret
+from settings import PHOTOS_DIRECTORY, api_key, api_secret, EXCLUDE_FILES_REGEX
 
 
 class Flickr(object):
@@ -13,6 +13,8 @@ class Flickr(object):
         self.format = format
         self.api = flickrapi.FlickrAPI(api_key, api_secret, format=self.format)
         (token, frob) = self.api.get_token_part_one(perms='write')
+        raw_input('Presione ENTER despues de aceptar los permisos '
+                  'para la aplicacion...')
         self.token = self.api.get_token_part_two((token, frob))
         self.cache = {'photoset_photos': {}}
 
@@ -89,10 +91,18 @@ class Flickr(object):
                 for filename in files:
                     path = os.path.join(root, filename)
                     print '      - %s' % path
+                    if EXCLUDE_FILES_REGEX.match(path):
+                        print 'EXCLUDED'
+                        continue
 
                     if not self.is_photo_already_uploaded(filename,
                                                           photoset_title):
-                        upload = self.upload_photo(path, 0)
+                        try:
+                            upload = self.upload_photo(path, 0)
+                        except flickrapi.exceptions.FlickrError, e:
+                            print e
+                            import ipdb;ipdb.set_trace()
+                            continue
                         if upload.get('stat') == 'ok':
                             created, photoset_id = self.is_photoset_already_created(photoset_title)
                             photo_id = upload.find('photoid').text
