@@ -7,7 +7,7 @@ PHOTOS_DIRECTORY = '/home/humitos/fotos'
 
 
 EXCLUDE_FILES = (
-    r'*.thm$',
+    r'.*thm$',
     r'.*/recuerdos viejos/.*',
     r'.*/camara pauli/.*MOV$',
     r'.*\.nono.*',
@@ -15,4 +15,4 @@ EXCLUDE_FILES = (
 )
 
 EXCLUDE_FILES = '(' + '|'.join(EXCLUDE_FILES) + ')'
-EXCLUDE_FILES_REGEX = re.compile(EXCLUDE_FILES, re.IGNORECASE)
+EXCLUDE_FILES_REGEX = re.compile(EXCLUDE_FILES, flags=re.IGNORECASE)
