@@ -15,7 +15,7 @@ How it works
 You need to create a config file called "settings.py" in the same
 directory of the project with this line inside::
 
-    UPLOAD_FOLDER = '/path/to/your/photos/directory'
+    PHOTOS_DIRECTORY = '/path/to/your/photos/directory'
 
 Once you have created this file and run the applicacion, it will
 search for all the subdirectories that don't have more
@@ -24,7 +24,7 @@ PhotoSet with the name of this directory.
 
 Example::
 
-    /home/humitos/fotos/
+    /home/YOUR_USERNAME/fotos/
     ├── Sunny day
     │   ├── IMG_0016.JPG
     │   ├── IMG_0017.JPG
